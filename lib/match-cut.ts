@@ -32,7 +32,7 @@ export const LOOKS: Look[] = [
 
 export type LookMode = 'mixed' | string
 
-export const HIGHLIGHTS = ['#ffe14d', '#ff9ec4', '#a6f05a', '#8fd3ff', '#ff7a45', '#c7a6ff']
+export const HIGHLIGHTS = ['#ffe14d', '#ff9ec4', '#a6f05a', '#8fd3ff', '#ff7a45', '#c7a6ff', '#62e6c5', '#ff6b9d', '#ffffff', '#f2c14e']
 
 export type FontMode = 'mixed' | 'serif' | 'sans' | 'mono' | 'script' | 'display'
 export const FONT_MODES: { value: FontMode; label: string }[] = [
@@ -44,7 +44,7 @@ export const FONT_MODES: { value: FontMode; label: string }[] = [
   { value: 'display', label: 'Display' },
 ]
 
-export type HighlightStyle = 'marker' | 'underline' | 'box' | 'circle' | 'invert' | 'glow'
+export type HighlightStyle = 'marker' | 'underline' | 'box' | 'circle' | 'invert' | 'glow' | 'stripe' | 'double'
 export const HIGHLIGHT_STYLES: { value: HighlightStyle; label: string }[] = [
   { value: 'marker', label: 'Marker' },
   { value: 'underline', label: 'Underline' },
@@ -52,6 +52,8 @@ export const HIGHLIGHT_STYLES: { value: HighlightStyle; label: string }[] = [
   { value: 'circle', label: 'Circle' },
   { value: 'invert', label: 'Invert' },
   { value: 'glow', label: 'Glow' },
+  { value: 'stripe', label: 'Stripe' },
+  { value: 'double', label: 'Double line' },
 ]
 
 export type Motion = 'cut' | 'flash' | 'pulse' | 'shake' | 'spin' | 'scroll'
@@ -468,6 +470,22 @@ export function drawMatchCutFrame(
         break
       case 'glow':
         wordInk = look.ink
+        break
+      case 'stripe':
+        ctx.strokeStyle = opts.highlightColor
+        ctx.lineWidth = fs * 0.04
+        for (let y = hy; y < hy + hh; y += fs * 0.14) {
+          ctx.beginPath()
+          ctx.moveTo(hx, y)
+          ctx.lineTo(hx + hw, y - fs * 0.12)
+          ctx.stroke()
+        }
+        break
+      case 'double':
+        ctx.strokeStyle = opts.highlightColor
+        ctx.lineWidth = fs * 0.045
+        ctx.strokeRect(hx - pad * 0.5, hy - pad * 0.2, hw + pad, hh + pad * 0.4)
+        ctx.strokeRect(hx + pad * 0.35, hy + pad * 0.15, Math.max(0, hw - pad * 0.7), Math.max(0, hh - pad * 0.3))
         break
     }
     ctx.restore()

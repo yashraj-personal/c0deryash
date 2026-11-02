@@ -60,6 +60,9 @@ export const THEMES: Theme[] = [
   { id: 'lavender', name: 'Lavender', bg: '#e7e1f5', ink: '#1a1430', flower: '#7b4fd1', flowerLight: '#d9c9ff', center: '#f2c94c', vine: '#2d6b4f', vineLight: '#cbe8da', style: 'tulip' },
   { id: 'sunset', name: 'Sunset', bg: '#ffd9b8', ink: '#2a130a', flower: '#e8452c', flowerLight: '#ffc2a8', center: '#7a1d0d', vine: '#2a5a2c', vineLight: '#d5ecc9', style: 'tulip' },
   { id: 'night', name: 'Night', bg: '#151a33', ink: '#f3eee4', flower: '#f19ab0', flowerLight: '#ffe3ea', center: '#ffd36e', vine: '#7fcf8e', vineLight: '#1d3b24', style: 'rose' },
+  { id: 'cobalt', name: 'Cobalt', bg: '#dce8ff', ink: '#101b4d', flower: '#2454e8', flowerLight: '#b9ccff', center: '#ffcf4a', vine: '#087f6f', vineLight: '#c4efe5', style: 'daisy' },
+  { id: 'apricot', name: 'Apricot', bg: '#ffe1c7', ink: '#3b1b13', flower: '#f06b3c', flowerLight: '#ffd0a7', center: '#8f2d22', vine: '#48773c', vineLight: '#d3e8bd', style: 'blossom' },
+  { id: 'mint', name: 'Mint', bg: '#d8f2e5', ink: '#102d25', flower: '#1aa879', flowerLight: '#a9ebcf', center: '#f4b83f', vine: '#266b5a', vineLight: '#bde2d3', style: 'tulip' },
 ]
 
 export type Paint = 'flower' | 'flowerLight' | 'center' | 'vine' | 'vineLight'

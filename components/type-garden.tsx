@@ -278,8 +278,10 @@ export function TypeGarden({
             </div>
           </div>
         )}
-        <p className="text-center text-sm opacity-60">
+        <p className="flex items-center gap-2 text-center text-sm opacity-60">
+          <span className="inline-block size-1.5 animate-pulse rounded-full bg-current" aria-hidden="true" />
           {pristine ? 'Type anything — watch it bloom.' : 'Backspace to prune. Regrow for a new garden.'}
+          <span className="hidden text-[10px] uppercase tracking-[0.16em] opacity-60 sm:inline">editable canvas</span>
         </p>
         <Credit className="opacity-80" />
       </footer>

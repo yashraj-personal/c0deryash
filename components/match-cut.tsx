@@ -37,6 +37,10 @@ const PRESETS = [
   { phrase: 'you were always the plot twist', highlight: 4 },
   { phrase: 'main character energy', highlight: 1 },
   { phrase: 'it was never about the money', highlight: 3 },
+  { phrase: 'make something worth remembering', highlight: 2 },
+  { phrase: 'the future is still unwritten', highlight: 3 },
+  { phrase: 'small details. loud feelings.', highlight: 1 },
+  { phrase: 'write c0de ryash', highlight: 1 },
 ]
 
 type Clock = { start: number; pausedAt: number; playing: boolean; recording: boolean }
@@ -268,7 +272,7 @@ export function MatchCut({ modeSwitch }: { modeSwitch: ReactNode }) {
       <header className="flex flex-wrap items-center justify-between gap-4 px-5 py-4 md:px-8 md:py-6">
         <div className="flex flex-wrap items-center gap-4">
           <h1 className="font-serif text-2xl tracking-tight md:text-3xl">
-            match <span className="bg-[#ffe14d] px-1 text-[#0f0f0f]">cut</span>
+            write <span className="bg-[#ffe14d] px-1 text-[#0f0f0f]">c0de ryash</span>
           </h1>
           {modeSwitch}
         </div>
