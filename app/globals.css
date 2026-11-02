@@ -47,41 +47,28 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root {
-  color-scheme: light;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+.ios-match {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
 }
+.ios-match header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(245, 245, 247, 0.82);
+  backdrop-filter: blur(24px);
+}
+.ios-match input,
+.ios-match select {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  background: rgba(255, 255, 255, 0.82) !important;
+  color: #1d1d1f !important;
+}
+.ios-match button { border-color: rgba(0, 0, 0, 0.12); color: #1d1d1f; }
+.ios-match button:hover { background: rgba(0, 0, 0, 0.05); }
+.ios-match .text-white\/40,
+.ios-match .text-white\/50,
+.ios-match .text-white\/60 { color: rgba(0, 0, 0, 0.48); }
+.ios-match .border-white\/10,
+.ios-match .border-white\/15 { border-color: rgba(0, 0, 0, 0.1); }
+
 
 .dark {
   color-scheme: dark;
@@ -165,8 +152,28 @@
 }
 
 /* type garden */
+.tg-title-flower {
+  position: absolute;
+  right: -0.7rem;
+  top: -0.35rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--tg-center) 0 22%, var(--tg-flower) 24% 48%, transparent 50%), radial-gradient(circle at 50% 0%, var(--tg-flower) 0 34%, transparent 36%), radial-gradient(circle at 100% 50%, var(--tg-flower) 0 34%, transparent 36%), radial-gradient(circle at 50% 100%, var(--tg-flower) 0 34%, transparent 36%), radial-gradient(circle at 0% 50%, var(--tg-flower) 0 34%, transparent 36%);
+  filter: drop-shadow(0 2px 2px color-mix(in srgb, var(--tg-ink) 20%, transparent));
+}
+.tg-root {
+  background-image: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--tg-ink) 5%, transparent), transparent 38%), linear-gradient(transparent 97%, color-mix(in srgb, var(--tg-ink) 8%, transparent) 100%);
+  background-size: auto, 100% 24px;
+}
 .tg-text {
   line-height: 1.1;
+  filter: drop-shadow(0 18px 22px color-mix(in srgb, var(--tg-ink) 10%, transparent));
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1), filter 500ms ease;
+}
+.tg-text:hover {
+  transform: translateY(-4px) rotate(-0.4deg);
+  filter: drop-shadow(0 24px 28px color-mix(in srgb, var(--tg-ink) 18%, transparent));
 }
 .tg-letter {
   position: relative;
@@ -229,6 +236,11 @@
   transform-origin: 0 0;
   animation: tg-breathe 5s ease-in-out infinite alternate;
 }
+.tg-flower-depth {
+  transform-style: preserve-3d;
+  will-change: transform;
+  animation: tg-breathe-3d 5s ease-in-out infinite alternate;
+}
 .tg-burst {
   opacity: 0;
   animation: tg-burst 0.75s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
@@ -286,12 +298,12 @@
   }
 }
 @keyframes tg-breathe {
-  from {
-    transform: rotate(-4deg) scale(0.97);
-  }
-  to {
-    transform: rotate(4deg) scale(1.04);
-  }
+  from { transform: rotate(-2deg) scale(0.98); }
+  to { transform: rotate(2deg) scale(1.02); }
+}
+@keyframes tg-breathe-3d {
+  from { transform: perspective(240px) rotateX(-2deg) rotateY(-3deg) rotateZ(-2deg) scale(0.98); }
+  to { transform: perspective(240px) rotateX(3deg) rotateY(4deg) rotateZ(2deg) scale(1.04); }
 }
 @keyframes tg-burst {
   0% {
@@ -418,6 +430,7 @@
   .tg-glyph,
   .tg-sway,
   .tg-breathe,
+  .tg-flower-depth,
   .tg-wings {
     animation: none;
   }

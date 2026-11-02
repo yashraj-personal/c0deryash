@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Bebas_Neue, Caveat, DM_Serif_Display, Geist, Playfair_Display, Space_Mono } from 'next/font/google'
 import './globals.css'
+import { ActivityLogger } from '@/components/activity-logger'
 
 const serif = DM_Serif_Display({ subsets: ['latin'], weight: '400', variable: '--font-dm-serif' })
 const sans = Geist({ subsets: ['latin'], variable: '--font-geist' })
@@ -15,10 +16,15 @@ const bebas = Bebas_Neue({ subsets: ['latin'], weight: '400', variable: '--font-
 const mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-space-mono' })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://c0deryash.vercel.app'),
   title: 'type garden — type anything, watch it bloom',
-  description:
-    'A tiny typographic garden where every letter sprouts vines and flowers, plus a text match cut video maker. Made by YASH (@c0deryash).',
-  authors: [{ name: 'YASH', url: 'https://www.instagram.com/c0deryash/' }],
+  description: 'A playful typographic garden and text motion studio by YASH RAJ. Grow words, design posters, and export animated match cuts.',
+  authors: [{ name: 'YASH RAJ', url: 'https://www.instagram.com/c0deryash/' }],
+  creator: 'YASH RAJ',
+  keywords: ['type garden', 'typography tool', 'text animation', 'match cut', 'YASH RAJ'],
+  openGraph: { title: 'type garden — write c0de ryash', description: 'Grow words into flowers and make expressive text motion.', type: 'website', siteName: 'type garden' },
+  twitter: { card: 'summary_large_image', title: 'type garden — write c0de ryash', description: 'A playful typographic garden and text motion studio.' },
+  robots: { index: true, follow: true },
 }
 
 export const viewport: Viewport = {
@@ -34,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable} ${playfair.variable} ${caveat.variable} ${bebas.variable} ${mono.variable}`}>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">{children}<ActivityLogger /></body>
     </html>
   )
 }

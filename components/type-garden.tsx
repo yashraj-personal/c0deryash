@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react'
-import { Eraser, RefreshCw, SlidersHorizontal } from 'lucide-react'
+import { Download, Eraser, Film, RefreshCw, SlidersHorizontal } from 'lucide-react'
 import {
   DENSITY_OPTIONS,
   GARDEN_FONTS,
@@ -22,7 +22,7 @@ import { Credit } from '@/components/credit'
 type Letter = { id: number; char: string; seed: number }
 
 const MAX_LENGTH = 40
-const DEMO_WORD = 'sonder'
+const DEMO_WORD = 'ENTER YOUR TEXT'
 
 let nextId = 1
 const makeLetter = (char: string, seed = Math.floor(Math.random() * 2 ** 31)): Letter => ({
@@ -109,6 +109,90 @@ export function TypeGarden({
     refocus()
   }
 
+  const saveVideo = () => {
+    const canvas = document.createElement('canvas')
+    canvas.width = 1080
+    canvas.height = 1080
+    const ctx = canvas.getContext('2d')
+    if (!ctx || typeof canvas.captureStream !== 'function' || typeof MediaRecorder === 'undefined') return
+    const mime = MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9' : 'video/webm'
+    const recorder = new MediaRecorder(canvas.captureStream(30), { mimeType: mime, videoBitsPerSecond: 8_000_000 })
+    const chunks: Blob[] = []
+    recorder.ondataavailable = (event) => event.data.size && chunks.push(event.data)
+    recorder.onstop = () => {
+      const link = document.createElement('a')
+      link.download = `type-garden-${value.trim().replace(/[^a-z0-9]+/gi, '-').toLowerCase() || 'garden'}.webm`
+      link.href = URL.createObjectURL(new Blob(chunks, { type: mime }))
+      link.click()
+      setTimeout(() => URL.revokeObjectURL(link.href), 1000)
+    }
+    recorder.start()
+    const start = performance.now()
+    const draw = (now: number) => {
+      const progress = Math.min(1, (now - start) / 2200)
+      ctx.fillStyle = theme.bg
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.fillStyle = theme.ink
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.font = `${font.italic ? 'italic ' : ''}${font.weight} 130px ${font.family}`
+      ctx.globalAlpha = Math.min(1, progress * 2)
+      ctx.fillText(value || 'type garden', canvas.width / 2, canvas.height / 2)
+      ctx.globalAlpha = 1
+      if (progress < 1) requestAnimationFrame(draw)
+      else recorder.stop()
+    }
+    requestAnimationFrame(draw)
+  }
+
+  const savePoster = () => {
+    const canvas = document.createElement('canvas')
+    canvas.width = 3840
+    canvas.height = 2160
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    ctx.fillStyle = theme.bg
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    ctx.globalAlpha = 0.08
+    ctx.strokeStyle = theme.ink
+    ctx.lineWidth = 3
+    for (let x = 0; x < canvas.width; x += 72) {
+      ctx.beginPath()
+      ctx.moveTo(x, 0)
+      ctx.lineTo(x, canvas.height)
+      ctx.stroke()
+    }
+    for (let y = 0; y < canvas.height; y += 72) {
+      ctx.beginPath()
+      ctx.moveTo(0, y)
+      ctx.lineTo(canvas.width, y)
+      ctx.stroke()
+    }
+    ctx.globalAlpha = 1
+    ctx.fillStyle = theme.ink
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    const posterSize = Math.min(520, Math.max(180, 2100 / Math.max(longestWord, 5)))
+    ctx.font = `${font.italic ? 'italic ' : ''}${font.weight} ${posterSize}px ${font.family}`
+    const lines = value.split(' ')
+    const lineHeight = posterSize * 1.25
+    const startY = canvas.height / 2 - ((lines.length - 1) * lineHeight) / 2
+    lines.forEach((line, index) => ctx.fillText(line || ' ', canvas.width / 2, startY + index * lineHeight))
+    ctx.font = '600 30px Arial, sans-serif'
+    ctx.textAlign = 'left'
+    ctx.globalAlpha = 0.55
+    ctx.fillText('TYPE GARDEN / 4K POSTER', 120, 130)
+    ctx.textAlign = 'right'
+    ctx.fillText('YASH RAJ', canvas.width - 120, canvas.height - 110)
+    ctx.globalAlpha = 1
+
+    const link = document.createElement('a')
+    link.download = `type-garden-${value.trim().replace(/[^a-z0-9]+/gi, '-').toLowerCase() || 'poster'}-4k.png`
+    link.href = canvas.toDataURL('image/png')
+    link.click()
+  }
+
   const words = useMemo(() => {
     const groups: Letter[][] = [[]]
     for (const letter of letters) {
@@ -129,9 +213,11 @@ export function TypeGarden({
     >
       {butterflies && <Butterflies theme={theme} />}
 
-      <header className="relative z-20 flex flex-wrap items-center justify-between gap-4 px-5 py-4 md:px-8 md:py-6">
-        <div className="flex flex-wrap items-center gap-4">
-          <h1 className="font-serif text-2xl tracking-tight md:text-3xl">type garden</h1>
+      <header className="relative z-50 flex flex-wrap items-center justify-between gap-3 px-4 py-3 isolate sm:gap-4 sm:px-5 sm:py-4 md:px-8 md:py-6">
+        <div className="flex min-w-0 flex-wrap items-center gap-3 sm:gap-4">
+          <h1 className="flex items-center gap-2 font-serif text-xl tracking-tight sm:text-2xl md:text-3xl">
+            type <span className="relative">garden<span className="tg-title-flower" aria-hidden="true" /></span>
+          </h1>
           {modeSwitch}
         </div>
         <div className="flex flex-wrap items-center gap-3">
@@ -148,8 +234,9 @@ export function TypeGarden({
                   setThemeIndex(i)
                   refocus()
                 }}
-                className="size-6 rounded-full border-2 transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2"
+                className="relative z-50 size-7 shrink-0 overflow-hidden rounded-full border-2 bg-white transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 sm:size-8"
                 style={{
+                  backgroundColor: theme.bg,
                   background: `linear-gradient(135deg, ${t.flower} 50%, ${t.vine} 50%)`,
                   borderColor: i === themeIndex ? theme.ink : 'transparent',
                   outlineColor: theme.ink,
@@ -158,6 +245,24 @@ export function TypeGarden({
             ))}
           </div>
           <span className="mx-1 h-5 w-px opacity-30" style={{ backgroundColor: theme.ink }} aria-hidden="true" />
+          <button
+            type="button"
+            onClick={saveVideo}
+            aria-label="Save type garden video"
+            title="Save type garden video"
+            className="rounded-full p-2 transition-opacity hover:opacity-60"
+          >
+            <Film className="size-5" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={savePoster}
+            aria-label="Save 4K poster"
+            title="Save 4K poster"
+            className="rounded-full p-2 transition-opacity hover:opacity-60"
+          >
+            <Download className="size-5" aria-hidden="true" />
+          </button>
           <button
             type="button"
             onClick={() => setPanelOpen((o) => !o)}
@@ -177,7 +282,7 @@ export function TypeGarden({
         </div>
       </header>
 
-      <main className="relative flex flex-1 items-center justify-center px-4 py-10">
+      <main className="relative flex min-h-[42vh] flex-1 items-center justify-center overflow-hidden px-3 py-8 sm:px-4 sm:py-10">
         <label htmlFor="garden-input" className="sr-only">
           Type a word to grow a garden
         </label>
@@ -234,7 +339,7 @@ export function TypeGarden({
         {panelOpen && (
           <div
             id="garden-panel"
-            className="tg-panel flex max-w-4xl flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-3xl border px-5 py-3"
+            className="tg-panel flex max-h-[34vh] max-w-4xl flex-wrap items-center justify-center gap-x-4 gap-y-3 overflow-y-auto rounded-3xl border px-4 py-3 sm:gap-x-6 sm:px-5"
             style={{ '--tg-bg': theme.bg } as CSSProperties}
           >
             <ChipGroup
@@ -278,8 +383,10 @@ export function TypeGarden({
             </div>
           </div>
         )}
-        <p className="text-center text-sm opacity-60">
+        <p className="flex items-center gap-2 text-center text-sm opacity-60">
+          <span className="inline-block size-1.5 animate-pulse rounded-full bg-current" aria-hidden="true" />
           {pristine ? 'Type anything — watch it bloom.' : 'Backspace to prune. Regrow for a new garden.'}
+          <span className="hidden text-[10px] uppercase tracking-[0.16em] opacity-60 sm:inline">editable canvas</span>
         </p>
         <Credit className="opacity-80" />
       </footer>

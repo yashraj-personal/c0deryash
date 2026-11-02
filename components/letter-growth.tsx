@@ -23,6 +23,16 @@ export function LetterGrowth({ growth, theme, layer, petals }: LetterGrowthProps
       className="tg-growth"
       style={{ zIndex: isFront ? 2 : 0 }}
     >
+      <defs>
+        <filter id="tg-flower-shadow" x="-40%" y="-40%" width="180%" height="180%">
+          <feDropShadow dx="2" dy="4" stdDeviation="2.5" floodColor="#000" floodOpacity="0.22" />
+        </filter>
+        <radialGradient id="tg-flower-highlight" cx="28%" cy="22%" r="80%">
+          <stop offset="0%" stopColor="#fff" stopOpacity="0.45" />
+          <stop offset="42%" stopColor="#fff" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#000" stopOpacity="0.16" />
+        </radialGradient>
+      </defs>
       {isFront &&
         growth.burst.map((dot, i) => (
           <circle
@@ -85,7 +95,7 @@ export function LetterGrowth({ growth, theme, layer, petals }: LetterGrowthProps
           key={`f${i}`}
           transform={`translate(${flower.x} ${flower.y}) rotate(${flower.rotate}) scale(${flower.scale})`}
         >
-          <g className="tg-breathe" style={{ animationDelay: `${-flower.sway}s` }}>
+          <g className="tg-breathe tg-flower-depth" filter="url(#tg-flower-shadow)" style={{ animationDelay: `${-flower.sway}s` }}>
             <g className="tg-pop tg-bloom" style={{ animationDelay: `${flower.delay}s` }}>
               {flower.parts.map((part, j) => (
                 <path
@@ -99,6 +109,7 @@ export function LetterGrowth({ growth, theme, layer, petals }: LetterGrowthProps
                   strokeLinejoin="round"
                 />
               ))}
+              <circle r="18" fill="url(#tg-flower-highlight)" opacity="0.75" pointerEvents="none" />
             </g>
           </g>
         </g>

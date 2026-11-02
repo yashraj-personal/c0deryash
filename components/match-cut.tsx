@@ -31,12 +31,20 @@ const MAX_PHRASE = 40
 const FPS = 30
 
 const PRESETS = [
-  { phrase: 'a quiet feeling called sonder', highlight: 3 },
+  { phrase: 'ENTER YOUR TEXT', highlight: 1 },
   { phrase: 'breaking: prestige is back', highlight: 1 },
   { phrase: 'chapter one. heaven.', highlight: 2 },
   { phrase: 'you were always the plot twist', highlight: 4 },
   { phrase: 'main character energy', highlight: 1 },
   { phrase: 'it was never about the money', highlight: 3 },
+  { phrase: 'make something worth remembering', highlight: 2 },
+  { phrase: 'the future is still unwritten', highlight: 3 },
+  { phrase: 'small details. loud feelings.', highlight: 1 },
+  { phrase: 'write c0de ryash', highlight: 1 },
+  { phrase: 'make room for wonder', highlight: 3 },
+  { phrase: 'design is a feeling', highlight: 2 },
+  { phrase: 'stay curious stay soft', highlight: 1 },
+  { phrase: 'ideas need somewhere to land', highlight: 4 },
 ]
 
 type Clock = { start: number; pausedAt: number; playing: boolean; recording: boolean }
@@ -46,27 +54,27 @@ export function MatchCut({ modeSwitch }: { modeSwitch: ReactNode }) {
   const [phrase, setPhrase] = useState(PRESETS[0].phrase)
   const [highlight, setHighlight] = useState(PRESETS[0].highlight)
   const [aspect, setAspect] = useState<Aspect>('9:16')
-  const [lookMode, setLookMode] = useState<LookMode>('mixed')
+  const [lookMode, setLookMode] = useState<LookMode>('paper')
   const [highlightColor, setHighlightColor] = useState(HIGHLIGHTS[0])
-  const [highlightStyle, setHighlightStyle] = useState<HighlightStyle>('marker')
+  const [highlightStyle, setHighlightStyle] = useState<HighlightStyle>('underline')
   const [fontMode, setFontMode] = useState<FontMode>('mixed')
   const [motion, setMotion] = useState<Motion>('cut')
   const [caseMode, setCaseMode] = useState<CaseMode>('asis')
   const [cps, setCps] = useState(8)
   const [duration, setDuration] = useState(5)
-  const [blur, setBlur] = useState(true)
-  const [zoom, setZoom] = useState(true)
+  const [blur, setBlur] = useState(false)
+  const [zoom, setZoom] = useState(false)
   const [grain, setGrain] = useState(false)
   const [typeOn, setTypeOn] = useState(true)
   const [sound, setSound] = useState(false)
   const [seed, setSeed] = useState(20261102)
-  const [playing, setPlaying] = useState(true)
+  const [playing, setPlaying] = useState(false)
   const [progress, setProgress] = useState<number | null>(null)
   const [result, setResult] = useState<Result | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const clockRef = useRef<Clock>({ start: 0, pausedAt: 0, playing: true, recording: false })
+  const clockRef = useRef<Clock>({ start: 0, pausedAt: 0, playing: false, recording: false })
   const audioRef = useRef<AudioContext | null>(null)
   const audioDestRef = useRef<MediaStreamAudioDestinationNode | null>(null)
   const recorderRef = useRef<MediaRecorder | null>(null)
@@ -264,15 +272,15 @@ export function MatchCut({ modeSwitch }: { modeSwitch: ReactNode }) {
   const fileName = `match-cut-${(words[safeHighlight] ?? 'video').toLowerCase().replace(/[^a-z0-9]+/g, '')}`
 
   return (
-    <div className="flex min-h-dvh flex-col bg-[#0f0f0f] text-[#f2efe8]">
+    <div className="ios-match flex min-h-dvh flex-col bg-[#f5f5f7] text-[#1d1d1f]">
       <header className="flex flex-wrap items-center justify-between gap-4 px-5 py-4 md:px-8 md:py-6">
         <div className="flex flex-wrap items-center gap-4">
           <h1 className="font-serif text-2xl tracking-tight md:text-3xl">
-            match <span className="bg-[#ffe14d] px-1 text-[#0f0f0f]">cut</span>
+            write <span className="bg-[#ffe14d] px-1 text-[#0f0f0f]">c0de ryash</span>
           </h1>
           {modeSwitch}
         </div>
-        <p className="hidden text-sm text-white/50 md:block">Type a phrase. Highlight a word. Export a video.</p>
+        <p className="hidden text-sm text-black/45 md:block">Type a phrase. Highlight a word. Export a video.</p>
       </header>
 
       <main className="grid flex-1 gap-6 px-5 pb-8 md:px-8 lg:grid-cols-[400px_1fr]">
