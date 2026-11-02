@@ -239,6 +239,11 @@
   transform-origin: 0 0;
   animation: tg-breathe 5s ease-in-out infinite alternate;
 }
+.tg-flower-depth {
+  transform-style: preserve-3d;
+  will-change: transform;
+  animation: tg-breathe-3d 5s ease-in-out infinite alternate;
+}
 .tg-burst {
   opacity: 0;
   animation: tg-burst 0.75s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
@@ -296,12 +301,12 @@
   }
 }
 @keyframes tg-breathe {
-  from {
-    transform: rotate(-4deg) scale(0.97);
-  }
-  to {
-    transform: rotate(4deg) scale(1.04);
-  }
+  from { transform: rotate(-2deg) scale(0.98); }
+  to { transform: rotate(2deg) scale(1.02); }
+}
+@keyframes tg-breathe-3d {
+  from { transform: perspective(240px) rotateX(-2deg) rotateY(-3deg) rotateZ(-2deg) scale(0.98); }
+  to { transform: perspective(240px) rotateX(3deg) rotateY(4deg) rotateZ(2deg) scale(1.04); }
 }
 @keyframes tg-burst {
   0% {
@@ -428,6 +433,7 @@
   .tg-glyph,
   .tg-sway,
   .tg-breathe,
+  .tg-flower-depth,
   .tg-wings {
     animation: none;
   }
