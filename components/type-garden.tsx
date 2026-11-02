@@ -22,7 +22,7 @@ import { Credit } from '@/components/credit'
 type Letter = { id: number; char: string; seed: number }
 
 const MAX_LENGTH = 40
-const DEMO_WORD = 'sonder'
+const DEMO_WORD = 'YASH'
 
 let nextId = 1
 const makeLetter = (char: string, seed = Math.floor(Math.random() * 2 ** 31)): Letter => ({
