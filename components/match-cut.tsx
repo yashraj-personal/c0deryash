@@ -54,27 +54,27 @@ export function MatchCut({ modeSwitch }: { modeSwitch: ReactNode }) {
   const [phrase, setPhrase] = useState(PRESETS[0].phrase)
   const [highlight, setHighlight] = useState(PRESETS[0].highlight)
   const [aspect, setAspect] = useState<Aspect>('9:16')
-  const [lookMode, setLookMode] = useState<LookMode>('mixed')
+  const [lookMode, setLookMode] = useState<LookMode>('paper')
   const [highlightColor, setHighlightColor] = useState(HIGHLIGHTS[0])
-  const [highlightStyle, setHighlightStyle] = useState<HighlightStyle>('marker')
+  const [highlightStyle, setHighlightStyle] = useState<HighlightStyle>('underline')
   const [fontMode, setFontMode] = useState<FontMode>('mixed')
   const [motion, setMotion] = useState<Motion>('cut')
   const [caseMode, setCaseMode] = useState<CaseMode>('asis')
   const [cps, setCps] = useState(8)
   const [duration, setDuration] = useState(5)
-  const [blur, setBlur] = useState(true)
-  const [zoom, setZoom] = useState(true)
+  const [blur, setBlur] = useState(false)
+  const [zoom, setZoom] = useState(false)
   const [grain, setGrain] = useState(false)
   const [typeOn, setTypeOn] = useState(true)
   const [sound, setSound] = useState(false)
   const [seed, setSeed] = useState(20261102)
-  const [playing, setPlaying] = useState(true)
+  const [playing, setPlaying] = useState(false)
   const [progress, setProgress] = useState<number | null>(null)
   const [result, setResult] = useState<Result | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const clockRef = useRef<Clock>({ start: 0, pausedAt: 0, playing: true, recording: false })
+  const clockRef = useRef<Clock>({ start: 0, pausedAt: 0, playing: false, recording: false })
   const audioRef = useRef<AudioContext | null>(null)
   const audioDestRef = useRef<MediaStreamAudioDestinationNode | null>(null)
   const recorderRef = useRef<MediaRecorder | null>(null)
@@ -272,7 +272,7 @@ export function MatchCut({ modeSwitch }: { modeSwitch: ReactNode }) {
   const fileName = `match-cut-${(words[safeHighlight] ?? 'video').toLowerCase().replace(/[^a-z0-9]+/g, '')}`
 
   return (
-    <div className="flex min-h-dvh flex-col bg-[#0f0f0f] text-[#f2efe8]">
+    <div className="ios-match flex min-h-dvh flex-col bg-[#f5f5f7] text-[#1d1d1f]">
       <header className="flex flex-wrap items-center justify-between gap-4 px-5 py-4 md:px-8 md:py-6">
         <div className="flex flex-wrap items-center gap-4">
           <h1 className="font-serif text-2xl tracking-tight md:text-3xl">
@@ -280,7 +280,7 @@ export function MatchCut({ modeSwitch }: { modeSwitch: ReactNode }) {
           </h1>
           {modeSwitch}
         </div>
-        <p className="hidden text-sm text-white/50 md:block">Type a phrase. Highlight a word. Export a video.</p>
+        <p className="hidden text-sm text-black/45 md:block">Type a phrase. Highlight a word. Export a video.</p>
       </header>
 
       <main className="grid flex-1 gap-6 px-5 pb-8 md:px-8 lg:grid-cols-[400px_1fr]">

@@ -16,7 +16,7 @@ const bebas = Bebas_Neue({ subsets: ['latin'], weight: '400', variable: '--font-
 const mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-space-mono' })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://c0deryash.vercel.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://c0deryash.vercel.app'),
   title: 'type garden — type anything, watch it bloom',
   description: 'A playful typographic garden and text motion studio by YASH RAJ. Grow words, design posters, and export animated match cuts.',
   authors: [{ name: 'YASH RAJ', url: 'https://www.instagram.com/c0deryash/' }],
