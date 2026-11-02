@@ -22,7 +22,7 @@ import { Credit } from '@/components/credit'
 type Letter = { id: number; char: string; seed: number }
 
 const MAX_LENGTH = 40
-const DEMO_WORD = 'YASH'
+const DEMO_WORD = 'ENTER YOUR TEXT'
 
 let nextId = 1
 const makeLetter = (char: string, seed = Math.floor(Math.random() * 2 ** 31)): Letter => ({
@@ -215,7 +215,9 @@ export function TypeGarden({
 
       <header className="relative z-50 flex flex-wrap items-center justify-between gap-3 px-4 py-3 isolate sm:gap-4 sm:px-5 sm:py-4 md:px-8 md:py-6">
         <div className="flex min-w-0 flex-wrap items-center gap-3 sm:gap-4">
-          <h1 className="font-serif text-xl tracking-tight sm:text-2xl md:text-3xl">type garden</h1>
+          <h1 className="flex items-center gap-2 font-serif text-xl tracking-tight sm:text-2xl md:text-3xl">
+            type <span className="relative">garden<span className="tg-title-flower" aria-hidden="true" /></span>
+          </h1>
           {modeSwitch}
         </div>
         <div className="flex flex-wrap items-center gap-3">

@@ -152,6 +152,16 @@
 }
 
 /* type garden */
+.tg-title-flower {
+  position: absolute;
+  right: -0.7rem;
+  top: -0.35rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--tg-center) 0 22%, var(--tg-flower) 24% 48%, transparent 50%), radial-gradient(circle at 50% 0%, var(--tg-flower) 0 34%, transparent 36%), radial-gradient(circle at 100% 50%, var(--tg-flower) 0 34%, transparent 36%), radial-gradient(circle at 50% 100%, var(--tg-flower) 0 34%, transparent 36%), radial-gradient(circle at 0% 50%, var(--tg-flower) 0 34%, transparent 36%);
+  filter: drop-shadow(0 2px 2px color-mix(in srgb, var(--tg-ink) 20%, transparent));
+}
 .tg-root {
   background-image: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--tg-ink) 5%, transparent), transparent 38%), linear-gradient(transparent 97%, color-mix(in srgb, var(--tg-ink) 8%, transparent) 100%);
   background-size: auto, 100% 24px;

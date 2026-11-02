@@ -31,7 +31,7 @@ const MAX_PHRASE = 40
 const FPS = 30
 
 const PRESETS = [
-  { phrase: 'a quiet feeling called sonder', highlight: 3 },
+  { phrase: 'ENTER YOUR TEXT', highlight: 1 },
   { phrase: 'breaking: prestige is back', highlight: 1 },
   { phrase: 'chapter one. heaven.', highlight: 2 },
   { phrase: 'you were always the plot twist', highlight: 4 },
