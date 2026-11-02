@@ -25,6 +25,9 @@ export function Credit({ className = '' }: { className?: string }) {
       <a href="/support" className="text-[10px] uppercase tracking-[0.18em] opacity-45 transition-opacity hover:opacity-100">
         support
       </a>
+      <a href="/privacy" className="text-[10px] uppercase tracking-[0.18em] opacity-45 transition-opacity hover:opacity-100">
+        privacy
+      </a>
       <span className="w-full text-center text-[10px] uppercase tracking-[0.14em] opacity-35">All rights reserved by YASH RAJ</span>
     </p>
   )

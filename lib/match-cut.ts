@@ -28,6 +28,8 @@ export const LOOKS: Look[] = [
   { id: 'blueprint', name: 'Blueprint', bg: '#143a7a', ink: '#eef3ff', filler: 'rgba(238,243,255,0.45)', rgb: '20,58,122', decor: 'grid' },
   { id: 'blush', name: 'Blush', bg: '#f7dfe4', ink: '#3a1420', filler: 'rgba(58,20,32,0.45)', rgb: '247,223,228', decor: 'none' },
   { id: 'kraft', name: 'Kraft', bg: '#cfae84', ink: '#2b1d0e', filler: 'rgba(43,29,14,0.5)', rgb: '207,174,132', decor: 'none' },
+  { id: 'sunset', name: 'Sunset', bg: '#f16d5b', ink: '#fff3d7', filler: 'rgba(255,243,215,0.45)', rgb: '241,109,91', decor: 'ruled' },
+  { id: 'lavender', name: 'Lavender', bg: '#c9b9f2', ink: '#20163b', filler: 'rgba(32,22,59,0.42)', rgb: '201,185,242', decor: 'grid' },
 ]
 
 export type LookMode = 'mixed' | string

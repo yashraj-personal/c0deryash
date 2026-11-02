@@ -1,0 +1,31 @@
+1:"$Sreact.fragment"
+2:"/_next/static/chunks/1kw_wr8enlp0z.js"
+3:"/_next/static/chunks/0yrloi7qockl1.js"
+4:I[76210,["$2","$3"],"default"]
+5:I[90604,["$2","$3"],"default"]
+6:I[96568,["$2","$3"],"ActivityLogger"]
+d:"/_next/static/chunks/345bu3ywcedcy.js"
+e:I[73612,["$2","$3","$d"],""]
+f:I[63334,["$2","$3"],"OutletBoundary"]
+10:"$Sreact.suspense"
+13:"ViewportBoundary"
+14:I[63334,["$2","$3"],"$13"]
+15:"MetadataBoundary"
+16:I[63334,["$2","$3"],"$15"]
+:HL["/_next/static/chunks/1xs3z8rgdysqw.css","style"]
+:HL["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_20260821_110816_FamApp-etzwkjJnqHQoFrhyfC5rn2pkegywKQ.jpg","image"]
+8:X
+b:X
+b:C
+c:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","main",null,{"className":"flex min-h-dvh items-center justify-center bg-[#d5c3bd] px-6 py-16 text-[#161312]","children":["$","section",null,{"className":"w-full max-w-md text-center","children":[["$","p",null,{"className":"mb-4 text-[10px] uppercase tracking-[0.3em] opacity-55","children":"support the studio"}],["$","h1",null,{"className":"font-serif text-5xl tracking-tight md:text-6xl","children":"keep the weird ideas growing."}],["$","p",null,{"className":"mx-auto mt-5 max-w-sm text-sm leading-6 opacity-70","children":"If this little corner of the internet made you smile, you can support future experiments through the QR code below."}],["$","div",null,{"className":"mx-auto mt-10 w-fit rounded-[2rem] bg-[#eee4de] p-4 shadow-[0_24px_80px_rgba(33,20,16,0.18)]","children":["$","img",null,{"src":"https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_20260821_110816_FamApp-etzwkjJnqHQoFrhyfC5rn2pkegywKQ.jpg","alt":"QR code to support YASH through FamApp","className":"block aspect-square w-64 rounded-2xl object-cover"}]}],["$","p",null,{"className":"mt-5 font-mono text-xs tracking-wide opacity-65","children":"pay2yash@fam"}],["$","$Le",null,{"href":"/","className":"mt-10 inline-flex rounded-full border border-[#161312]/20 px-4 py-2 text-xs uppercase tracking-[0.18em] transition-colors hover:bg-[#161312] hover:text-[#eee4de]","children":"back to the garden"}]]}]}],[["$","script","script-0",{"src":"/_next/static/chunks/345bu3ywcedcy.js","async":true}]],["$","$Lf",null,{"children":["$","$10",null,{"name":"Next.MetadataOutlet","children":"$@11"}]}]]}],"p":"$@12","v":null,"s":"$8"}}]]
+9:[["children",{"s":"support","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","template":["$","$L5",null,{}]}]]}],"p":"$@a","v":"$b","s":"$8"},"c":"$Qc"}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/1xs3z8rgdysqw.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/1kw_wr8enlp0z.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0yrloi7qockl1.js","async":true}]],["$","html",null,{"lang":"en","className":"zPB6RW_variable wf0pkq_variable lXpMSW_variable _2IGxeG_variable pOO-sq_variable _9CtDSG_variable","children":["$","body",null,{"className":"font-sans antialiased","children":[["$","$L4",null,{"parallelRouterKey":"children","template":["$","$L5",null,{}],"notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]]}],["$","$L6",null,{}]]}]}]]}],"p":"$@7","v":null,"s":"$8"},"c":"$Q9"},"h":{"r":["$","$1","h",{"children":[null,["$","$L14",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#f3d4d9"}]]}],["$","$L16",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$10",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"type garden — type anything, watch it bloom"}],["$","meta","1",{"name":"description","content":"A tiny typographic garden where every letter sprouts vines and flowers, plus a text match cut video maker. Made by YASH (@c0deryash)."}],["$","link","2",{"rel":"author","href":"https://www.instagram.com/c0deryash/"}],["$","meta","3",{"name":"author","content":"YASH"}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@17","v":null,"s":"$8"}},"a":"$@18","u":"$@19","b":"InLqc6pgKwCBmf7F3Jiu5"}
+11:null
+8:300
+19:true
+8:C
+18:0
+a:"$undefined"
+7:"$undefined"
+17:"$undefined"
+12:"$undefined"

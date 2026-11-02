@@ -41,6 +41,10 @@ const PRESETS = [
   { phrase: 'the future is still unwritten', highlight: 3 },
   { phrase: 'small details. loud feelings.', highlight: 1 },
   { phrase: 'write c0de ryash', highlight: 1 },
+  { phrase: 'make room for wonder', highlight: 3 },
+  { phrase: 'design is a feeling', highlight: 2 },
+  { phrase: 'stay curious stay soft', highlight: 1 },
+  { phrase: 'ideas need somewhere to land', highlight: 4 },
 ]
 
 type Clock = { start: number; pausedAt: number; playing: boolean; recording: boolean }
