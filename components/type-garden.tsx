@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react'
-import { Eraser, RefreshCw, SlidersHorizontal } from 'lucide-react'
+import { Download, Eraser, RefreshCw, SlidersHorizontal } from 'lucide-react'
 import {
   DENSITY_OPTIONS,
   GARDEN_FONTS,
@@ -109,6 +109,54 @@ export function TypeGarden({
     refocus()
   }
 
+  const savePoster = () => {
+    const canvas = document.createElement('canvas')
+    canvas.width = 3840
+    canvas.height = 2160
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    ctx.fillStyle = theme.bg
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    ctx.globalAlpha = 0.08
+    ctx.strokeStyle = theme.ink
+    ctx.lineWidth = 3
+    for (let x = 0; x < canvas.width; x += 72) {
+      ctx.beginPath()
+      ctx.moveTo(x, 0)
+      ctx.lineTo(x, canvas.height)
+      ctx.stroke()
+    }
+    for (let y = 0; y < canvas.height; y += 72) {
+      ctx.beginPath()
+      ctx.moveTo(0, y)
+      ctx.lineTo(canvas.width, y)
+      ctx.stroke()
+    }
+    ctx.globalAlpha = 1
+    ctx.fillStyle = theme.ink
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    const posterSize = Math.min(520, Math.max(180, 2100 / Math.max(longestWord, 5)))
+    ctx.font = `${font.italic ? 'italic ' : ''}${font.weight} ${posterSize}px ${font.family}`
+    const lines = value.split(' ')
+    const lineHeight = posterSize * 1.25
+    const startY = canvas.height / 2 - ((lines.length - 1) * lineHeight) / 2
+    lines.forEach((line, index) => ctx.fillText(line || ' ', canvas.width / 2, startY + index * lineHeight))
+    ctx.font = '600 30px Arial, sans-serif'
+    ctx.textAlign = 'left'
+    ctx.globalAlpha = 0.55
+    ctx.fillText('TYPE GARDEN / 4K POSTER', 120, 130)
+    ctx.textAlign = 'right'
+    ctx.fillText('YASH RAJ', canvas.width - 120, canvas.height - 110)
+    ctx.globalAlpha = 1
+
+    const link = document.createElement('a')
+    link.download = `type-garden-${value.trim().replace(/[^a-z0-9]+/gi, '-').toLowerCase() || 'poster'}-4k.png`
+    link.href = canvas.toDataURL('image/png')
+    link.click()
+  }
+
   const words = useMemo(() => {
     const groups: Letter[][] = [[]]
     for (const letter of letters) {
@@ -148,7 +196,7 @@ export function TypeGarden({
                   setThemeIndex(i)
                   refocus()
                 }}
-                className="size-6 rounded-full border-2 transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2"
+                className="size-7 rounded-full border-2 transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2"
                 style={{
                   background: `linear-gradient(135deg, ${t.flower} 50%, ${t.vine} 50%)`,
                   borderColor: i === themeIndex ? theme.ink : 'transparent',
@@ -158,6 +206,15 @@ export function TypeGarden({
             ))}
           </div>
           <span className="mx-1 h-5 w-px opacity-30" style={{ backgroundColor: theme.ink }} aria-hidden="true" />
+          <button
+            type="button"
+            onClick={savePoster}
+            aria-label="Save 4K poster"
+            title="Save 4K poster"
+            className="rounded-full p-2 transition-opacity hover:opacity-60"
+          >
+            <Download className="size-5" aria-hidden="true" />
+          </button>
           <button
             type="button"
             onClick={() => setPanelOpen((o) => !o)}
@@ -234,7 +291,7 @@ export function TypeGarden({
         {panelOpen && (
           <div
             id="garden-panel"
-            className="tg-panel flex max-w-4xl flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-3xl border px-5 py-3"
+            className="tg-panel flex max-h-[34vh] max-w-4xl flex-wrap items-center justify-center gap-x-4 gap-y-3 overflow-y-auto rounded-3xl border px-4 py-3 sm:gap-x-6 sm:px-5"
             style={{ '--tg-bg': theme.bg } as CSSProperties}
           >
             <ChipGroup
